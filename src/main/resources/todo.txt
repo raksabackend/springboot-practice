@@ -1,0 +1,4 @@
+1. In memory todo list app
+2. Spring Security and Authentication
+3. Spring Data JPA and Relationships
+4. Spring AI Integrations

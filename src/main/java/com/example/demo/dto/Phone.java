@@ -13,6 +13,7 @@ public class Phone {
 
     /**
      * Spring already manages battery bean. We inject the battery bean dependency into the Phone class.
+     * So we tell Spring to manage that bean. Instead of manually managing it in the Phone class.
      */
 
     public void turnOn() {
@@ -21,7 +22,6 @@ public class Phone {
     }
 
     /**
-     *
      * The main thing you must understand.
      * Not annotations.
      * Not syntax.

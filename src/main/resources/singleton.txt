@@ -1,0 +1,88 @@
+A singleton means :
+ only ONE object instance exists in application.
+
+Normal Objects :
+
+Car car1 = new Car();
+Car car2 = new Car();
+These are two different objects.
+
+Memory:
+car1 -> Object A
+car2 -> Object B
+
+Singleton
+
+Car car1 = getCar();
+Car car2 = getCar();
+
+Both variables point to SAME object.
+
+car1 -> Object A
+car2 -> Object A
+
+Why Singletons Are Useful
+
+Some things should exist only once:
+- database connection manager
+- configuration manager
+- logging service
+- authentication service
+
+You usually do not want :
+new DatabaseConnection() 1000 times.
+
+2. What are Spring Beans
+A Spring Bean is:
+  an object managed by Spring
+
+Instead of You creating objects:
+EmailService service = new EmailService();
+
+Spring creates and manages them.
+
+
+Think of Spring as an Object/Bean Manager:
+Spring :
+creates objects
+stores objects
+injects objects
+reuses objects
+Those managed objects are called : Beans
+
+Example Bean :
+@Component
+public class EmailService {
+
+}
+
+In large applications:
+hundred of classes
+many dependencies
+objection creation becomes messy
+
+Benefits of Spring Beans:
+Automatic Dependency Injection
+Reuse
+Easier Testing
+Centralized Object Management - Cleaner Architecture
+
+Important Default Behavior :
+Spring Beans are SINGLETON by default:
+@Component
+public class EmailService{
+}
+
+Spring creates ONE instance only.
+Entire app shares it.
+
+Specialized Component Types :
+These are all components internally :
+@Component - generic
+@Service - business logic
+@Repository - database layer
+@Controller - MVC controller
+@RestController - REST API
+
+
+

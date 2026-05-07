@@ -7,5 +7,4 @@ public class UserRequest {
 
     private String name;
 
-
 }

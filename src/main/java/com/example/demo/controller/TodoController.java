@@ -1,7 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.Todo;
+import com.example.demo.dto.UpdateDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +27,7 @@ public class TodoController {
         return todos;
     }
 
+
     @GetMapping("/{id}")
     public Todo getTodoById(@PathVariable("id") Long id) {
         return todos.stream().filter(c -> Objects.equals(c.getId(), id)).map(m -> new Todo(m.getId(), m.getTitle(), m.isCompleted())).findFirst().orElse(null);
@@ -43,4 +48,26 @@ public class TodoController {
         return todoToDelete;
     }
 
+    @PatchMapping("/{id}")
+    public Todo updateById(
+            @PathVariable("id") Long id,
+            @RequestBody UpdateDto updateTodo
+    ) {
+
+        Todo todoToUpdate = todos.stream()
+                .filter(todo -> id.equals(todo.getId()))
+                .findFirst()
+                .orElseThrow(()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,"Todo Not Found"
+                ));
+
+        if (todoToUpdate != null) {
+            todoToUpdate.setTitle(updateTodo.getTitle());
+            todoToUpdate.setCompleted(updateTodo.isCompleted());
+        }
+
+        return todoToUpdate;
+    }
+
 }
+
